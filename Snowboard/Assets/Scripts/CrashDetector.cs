@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] ParticleSystem injuryEffect;
     private readonly float sceneLoadDelay = 0.5f;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ground")
         {
-            Invoke(nameof(ReloadScene), sceneLoadDelay);
-            
+            injuryEffect.Play();
+            Invoke(nameof(ReloadScene), sceneLoadDelay);            
         }
     }
 
